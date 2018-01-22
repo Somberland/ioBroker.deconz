@@ -495,12 +495,14 @@ function getGroupAttributes(gwName, groupId) {
                 //create states for light device
                 for (var z = 0; z <= count2; z++) {
                     var stateName = Object.keys(list['action'])[z];
+
+					var objectName = list['name'].replace(/\s/g, '_');
                     switch (stateName) {
                         case 'on':
                             adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
                                 type: 'state',
                                 common: {
-                                    name: stateName,
+                                    name: gwName+'.'+objectName+'.'+stateName,
                                     type: 'boolean',
                                     role: 'switch',
                                     read: true,
@@ -703,12 +705,13 @@ function getAllSensors(gwName) {
                     //create states for sensor device
                     for (var z = 0; z <= count2; z++) {
                         var stateName = Object.keys(list[keyName]['state'])[z];
+					var objectName = list[keyName]['name'].replace(/\s/g, '_');
                         switch (stateName) {
                             case 'on':
                                 adapter.setObjectNotExists(gwName + '.' + list[keyName]['name'] + '.' + stateName, {
                                     type: 'switch',
                                     common: {
-                                        name: stateName,
+                                        name: gwName+'.'+objectName+'.'+stateName,
                                         type: 'boolean',
                                         role: 'state',
                                         read: true,
@@ -777,12 +780,14 @@ function getSensor(gwName, sensorId){
                 //create states for light device
                 for (var z = 0; z <= count2; z++) {
                     var stateName = Object.keys(list['config'])[z];
+
+					var objectName = list['name'].replace(/\s/g, '_');
                     switch (stateName) {
                         case 'on':
                             adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
                                 type: 'state',
                                 common: {
-                                    name: stateName,
+                                    name: gwName+'.'+objectName+'.'+stateName,
                                     type: 'boolean',
                                     role: 'switch',
                                     read: true,
@@ -897,12 +902,14 @@ function getAllLights(gwName){
                         //create states for light device
                         for (var z = 0; z <= count2; z++) {
                             var stateName = Object.keys(list[keyName]['state'])[z];
+
+					var objectName = list[keyName]['name'].replace(/\s/g, '_');
                             switch (stateName) {
                                 case 'on':
                                     adapter.setObjectNotExists(gwName + '.' + list[keyName]['name'] + '.' + stateName, {
                                         type: 'state',
                                         common: {
-                                            name: stateName,
+                                            name: gwName+'.'+objectName+'.'+stateName,
                                             type: 'boolean',
                                             role: 'switch',
                                             read: true,
@@ -1093,12 +1100,13 @@ function getLightState(gwName, lightId){
                     //create states for light device
                     for (var z = 0; z <= count2; z++) {
                         var stateName = Object.keys(list['state'])[z];
+					var objectName = list['name'].replace(/\s/g, '_');
                         switch (stateName) {
                             case 'on':
                                 adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
                                     type: 'state',
                                     common: {
-                                        name: stateName,
+                                        name: gwName+'.'+objectName+'.'+stateName,
                                         type: 'boolean',
                                         role: 'switch',
                                         read: true,
