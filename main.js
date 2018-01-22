@@ -495,14 +495,16 @@ function getGroupAttributes(gwName, groupId) {
                 //create states for light device
                 for (var z = 0; z <= count2; z++) {
                     var stateName = Object.keys(list['action'])[z];
+
+					var objectName = list['name'].replace(/\s/g, '_');
                     switch (stateName) {
                         case 'on':
                             adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
-                                type: 'switch',
+                                type: 'state',
                                 common: {
-                                    name: stateName,
+                                    name: gwName+'.'+objectName+'.'+stateName,
                                     type: 'boolean',
-                                    role: 'state',
+                                    role: 'switch',
                                     read: true,
                                     write: true
                                 },
@@ -518,7 +520,7 @@ function getGroupAttributes(gwName, groupId) {
                                     type: 'number',
                                     role: 'level.dimmer',
                                     min: 0,
-                                    max: 255,
+                                    max: 254,
                                     read: true,
                                     write: true
                                 },
@@ -532,7 +534,7 @@ function getGroupAttributes(gwName, groupId) {
                                 common: {
                                     name: stateName,
                                     type: 'number',
-                                    role: 'hue.color',
+                                    role: 'level.hue.color',
                                     min: 0,
                                     max: 65535,
                                     read: true,
@@ -548,9 +550,9 @@ function getGroupAttributes(gwName, groupId) {
                                 common: {
                                     name: stateName,
                                     type: 'number',
-                                    role: 'color.saturation',
+                                    role: 'level.color.saturation',
                                     min: 0,
-                                    max: 255,
+                                    max: 254,
                                     read: true,
                                     write: true
                                 },
@@ -675,7 +677,7 @@ function getAllSensors(gwName) {
         var count = Object.keys(list).length - 1;
 
         adapter.log.debug('getAllSensors: ' + body);
-        
+
         if (res.statusCode === 200) {
                 for (var i = 0; i <= count; i++) {
                     var keyName = Object.keys(list)[i];
@@ -703,12 +705,13 @@ function getAllSensors(gwName) {
                     //create states for sensor device
                     for (var z = 0; z <= count2; z++) {
                         var stateName = Object.keys(list[keyName]['state'])[z];
+					var objectName = list[keyName]['name'].replace(/\s/g, '_');
                         switch (stateName) {
                             case 'on':
                                 adapter.setObjectNotExists(gwName + '.' + list[keyName]['name'] + '.' + stateName, {
                                     type: 'switch',
                                     common: {
-                                        name: stateName,
+                                        name: gwName+'.'+objectName+'.'+stateName,
                                         type: 'boolean',
                                         role: 'state',
                                         read: true,
@@ -777,14 +780,16 @@ function getSensor(gwName, sensorId){
                 //create states for light device
                 for (var z = 0; z <= count2; z++) {
                     var stateName = Object.keys(list['config'])[z];
+
+					var objectName = list['name'].replace(/\s/g, '_');
                     switch (stateName) {
                         case 'on':
                             adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
-                                type: 'switch',
+                                type: 'state',
                                 common: {
-                                    name: stateName,
+                                    name: gwName+'.'+objectName+'.'+stateName,
                                     type: 'boolean',
-                                    role: 'state',
+                                    role: 'switch',
                                     read: true,
                                     write: true
                                 },
@@ -897,14 +902,16 @@ function getAllLights(gwName){
                         //create states for light device
                         for (var z = 0; z <= count2; z++) {
                             var stateName = Object.keys(list[keyName]['state'])[z];
+
+					var objectName = list[keyName]['name'].replace(/\s/g, '_');
                             switch (stateName) {
                                 case 'on':
                                     adapter.setObjectNotExists(gwName + '.' + list[keyName]['name'] + '.' + stateName, {
-                                        type: 'switch',
+                                        type: 'state',
                                         common: {
-                                            name: stateName,
+                                            name: gwName+'.'+objectName+'.'+stateName,
                                             type: 'boolean',
-                                            role: 'state',
+                                            role: 'switch',
                                             read: true,
                                             write: true
                                         },
@@ -919,7 +926,7 @@ function getAllLights(gwName){
                                             type: 'number',
                                             role: 'level.dimmer',
                                             min: 0,
-                                            max: 255,
+                                            max: 254,
                                             read: true,
                                             write: true
                                         },
@@ -932,7 +939,7 @@ function getAllLights(gwName){
                                         common: {
                                             name: stateName,
                                             type: 'number',
-                                            role: 'hue.color',
+                                            role: 'level.hue.color',
                                             min: 0,
                                             max: 65535,
                                             read: true,
@@ -947,9 +954,9 @@ function getAllLights(gwName){
                                         common: {
                                             name: stateName,
                                             type: 'number',
-                                            role: 'color.saturation',
+                                            role: 'level.color.saturation',
                                             min: 0,
-                                            max: 255,
+                                            max: 254,
                                             read: true,
                                             write: true
                                         },
@@ -1093,14 +1100,15 @@ function getLightState(gwName, lightId){
                     //create states for light device
                     for (var z = 0; z <= count2; z++) {
                         var stateName = Object.keys(list['state'])[z];
+					var objectName = list['name'].replace(/\s/g, '_');
                         switch (stateName) {
                             case 'on':
                                 adapter.setObjectNotExists(gwName + '.' + list['name'] + '.' + stateName, {
-                                    type: 'switch',
+                                    type: 'state',
                                     common: {
-                                        name: stateName,
+                                        name: gwName+'.'+objectName+'.'+stateName,
                                         type: 'boolean',
-                                        role: 'state',
+                                        role: 'switch',
                                         read: true,
                                         write: true
                                     },
@@ -1116,7 +1124,7 @@ function getLightState(gwName, lightId){
                                         type: 'number',
                                         role: 'level.dimmer',
                                         min: 0,
-                                        max: 255,
+                                        max: 254,
                                         read: true,
                                         write: true
                                     },
@@ -1130,7 +1138,7 @@ function getLightState(gwName, lightId){
                                     common: {
                                         name: stateName,
                                         type: 'number',
-                                        role: 'hue.color',
+                                        role: 'level.hue.color',
                                         min: 0,
                                         max: 65535,
                                         read: true,
@@ -1146,9 +1154,9 @@ function getLightState(gwName, lightId){
                                     common: {
                                         name: stateName,
                                         type: 'number',
-                                        role: 'color.saturation',
+                                        role: 'level.color.saturation',
                                         min: 0,
-                                        max: 255,
+                                        max: 254,
                                         read: true,
                                         write: true
                                     },
